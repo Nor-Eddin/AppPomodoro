@@ -1,3 +1,6 @@
+import UpdateTimeButton from "./components/UpdateTimeButton";
+import ToggleButton from "./components/ToggleButton";
+
 function App() {
 
   return (
@@ -9,14 +12,18 @@ function App() {
           <div className="mr-10 ">
             <p className="text-center mb-1">Sessions</p>
             <div className="flex">
+              <UpdateTimeButton sign={"-"} type={"session"}/>
               <p className="mx-4 text-xl">25</p>
+              <UpdateTimeButton sign={"+"} type={"session"}/>
             </div>
           </div>
           {/*Pauses block*/}
           <div >
             <p className="text-center mb-1">Pauses</p>
             <div className="flex">
+              <UpdateTimeButton sign={"-"} type={"pause"}/>
               <p className="mx-4 text-xl">5</p>
+              <UpdateTimeButton sign={"+"} type={"pause"}/>
             </div>
           </div>
         </div>
@@ -33,7 +40,7 @@ function App() {
         <p className="mb-10 text-center">
           Passed cycle(s) : 0
         </p>
-
+        <ToggleButton/>
       </div>
     </div>
   )
