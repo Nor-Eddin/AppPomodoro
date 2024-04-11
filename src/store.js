@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import Chrono from "./features/Chrono";
-import preview from "./features/preview";
+import Chrono from "./features/chrono";
+
 
 export const store = configureStore({
 reducer: {
