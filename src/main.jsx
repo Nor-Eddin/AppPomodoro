@@ -10,4 +10,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <App />
     </Provider>
 )
-console.log(store);
