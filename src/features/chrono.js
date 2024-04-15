@@ -7,24 +7,42 @@ const initialState = {
   },
   pause: {
     value: 300,
-    runningValue: 300, 
+    runningValue: 300,
   },
-    isPlaying: false,
-    intervalId: undefined,
-    cycles: 0,
-    displayedValue: {
-        value: 1500,
-        heading: "Work"
-    }
+  isPlaying: false,
+  intervalId: undefined,
+  cycles: 0,
+  displayedValue: {
+    value: 1500,
+    heading: "Work"
+  }
 }
 
 export const chrono = createSlice({
-    name: "chrono",
-    initialState,
-    reducers: {
+  name: "chrono",
+  initialState,
+  reducers: {
+    updateChronoValues: (state, action) => {
+      const ChosenState = state[action.payload.type];
+      //on bloque en dessous de 1
+      if (ChosenState.value + action.payload.value === 0) return
+
+      if (action.payload.type === "session") {
+        if(!state.isPlaying){
+          ChosenState.value = ChosenState.value+action.payload.value
+          ChosenState.runningValue=ChosenState.runningValue + action.payload.value
+          state.displayedValue.value = ChosenState.value
+        }else{
+          ChosenState.value = ChosenState.value+action.payload.value
+        }
+
+      }else if (action.payload.type === "pause"){
+        ChosenState.value = ChosenState.value+action.payload.value
+      }
 
     }
+  }
 })
 
-
+export const{updateChronoValues}=chrono.actions
 export default chrono.reducer
