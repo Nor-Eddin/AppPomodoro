@@ -8,8 +8,8 @@ function App() {
   const chronoValues = useSelector(state => state.chrono)
 
   return (
-    <div className="bg-slate-500 text-slate-100 pt-20 min-h-screen">
-      <div className="max-w-xl mx-auto border border-slate-500 rounded p-10">
+    <div className="bg-slate-600 text-slate-100 pt-20 min-h-screen">
+      <div className="max-w-xl mx-auto border border-slate-100 rounded p-20">
         <h1 className="text-center text-3xl mb-8">Pomodoro app</h1>
         <div className="flex justify-center mb-8">
           {/*session block*/}
