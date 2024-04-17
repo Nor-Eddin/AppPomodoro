@@ -31,7 +31,7 @@ export const chrono = createSlice({
         if (!state.isPlaying) {
           ChosenState.value = ChosenState.value + action.payload.value
           ChosenState.runningValue = ChosenState.runningValue + action.payload.value
-          state.displayedValue.value = ChosenState.value
+          state.displayedValue.value = ChosenState.runningValue
         } else {
           ChosenState.value = ChosenState.value + action.payload.value
         }
@@ -41,8 +41,25 @@ export const chrono = createSlice({
       }
 
     },
+    //gestion de decrémentation
     tick: (state, action) => {
-      console.log("tick")
+      if(state.session.runningValue>0){
+        state.session.runningValue--
+        state.displayedValue.value=state.session.runningValue
+        state.displayedValue.heading="Work"
+      }else if(state.pause.runningValue>0){
+        state.pause.runningValue--
+        state.displayedValue.value=state.pause.runningValue
+        state.displayedValue.heading="Pause"
+
+      }else{
+        state.cycles++
+        state.session.runningValue=state.session.value-1
+        state.displayedValue.value=state.session.value-1
+        state.displayedValue.heading="Work"
+        state.pause.runningValue=state.pause.value
+        
+      }
     },
     setUpChrono: (state, action) => {
       state.isPlaying = true
@@ -51,6 +68,11 @@ export const chrono = createSlice({
     resetChrono: (state, action) => {
       window.clearInterval(state.intervalID)
       state.isPlaying = false
+      state.session.runningValue=state.session.value
+      state.pause.runningValue=state.pause.value
+      state.cycles=0
+      state.displayedValue.value=state.session.value
+      state.displayedValue.heading="Work"
     }
   }
 })
